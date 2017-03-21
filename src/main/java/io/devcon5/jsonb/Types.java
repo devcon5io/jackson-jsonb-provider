@@ -25,7 +25,14 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Utility class with factory methods to create type handles that simplify JSON deserialization with jsonb
+ * Utility class with factory methods to create type handles that simplify JSON deserialization with jsonb.
+ * <br>
+ * For example, to create a {@link Type} instance for <code>List&lt;String&gt;</code> invoke
+ * <pre><code>
+ *     ParameterizedType listOfStrings = Types.listOf(String.class);
+ * </code></pre>
+ *
+ *
  * Created on 20.03.2017.
  */
 public final class Types {

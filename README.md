@@ -52,6 +52,14 @@ To deserialize json to object
 
     MyObject obj2 = jsonb.fromJson(json, MyObject.class);
     
+To deserialize a json array to a list, you may use the `Types` utility class
+
+    List<MyObject> list = jsonb.fromJson(json, Types.ofList(MyObject.class));
+    
+or
+
+    MyContainer<MyObject> list = jsonb.fromJson(json, Types.of(MyContainer.class, MyObject.class));
+    
 ## Configuration
 This provider can be configured to a small extend:
 
