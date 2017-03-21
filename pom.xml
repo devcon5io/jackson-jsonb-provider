@@ -24,7 +24,7 @@
 
 	<groupId>io.devcon5</groupId>
     <artifactId>jackson-jsonb-provider</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	
     <properties>
 		<javac.target>1.8</javac.target>
