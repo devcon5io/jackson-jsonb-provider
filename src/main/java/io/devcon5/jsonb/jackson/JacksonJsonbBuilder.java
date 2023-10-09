@@ -15,7 +15,11 @@
  */
 
 package io.devcon5.jsonb.jackson;
+import java.util.Optional;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
@@ -27,6 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Jackson2 based implmentation of Jsonb API
  */
+@ApplicationScoped
 public class JacksonJsonbBuilder implements JsonbBuilder {
 
     /**
@@ -60,11 +65,13 @@ public class JacksonJsonbBuilder implements JsonbBuilder {
         //noop
         return this;
     }
-
+    
+    @Inject 
+    private Provider<ObjectMapper> mapper;
+    
     @Override
     public Jsonb build() {
-
-        final ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper=Optional.ofNullable(this.mapper).map(Provider::get).orElseGet(ObjectMapper::new);
         if(!includeNulls){
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             if(!includeEmpty){
